@@ -1,0 +1,707 @@
+html {
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background-color: #E9EBEE;
+}
+
+body {
+    margin: 0px;
+    padding: 0px; // font-family: 'Roboto', sans-serif;
+}
+
+*:focus {
+    outline: none;
+}
+
+ ::-webkit-scrollbar {
+    display: none;
+}
+
+.mainContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    .mapPopup {
+        position: absolute;
+        height: 50rem;
+        top: 50%;
+        left: 50%;
+        width: 50rem;
+        transform: translate(-50%, -50%);
+        display: none;
+        .map {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .contentOverlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+    .dataLoader {
+        position: absolute;
+        border: 3.5px solid #efefef;
+        border-radius: 50%;
+        border-top-color: #b7abab;
+        border-right-color: #716b6b;
+        width: 9rem;
+        height: 9rem;
+        -webkit-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+        left: 50%;
+        top: 40%;
+        margin-left: -4.5rem;
+        margin-top: -4.5rem;
+        z-index: 3;
+        display: none;
+    }
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .searchLoader {
+        position: absolute;
+        border: 3.5px solid #efefef;
+        border-radius: 50%;
+        border-top-color: #b7abab;
+        border-right-color: #716b6b;
+        width: 9rem;
+        height: 9rem;
+        -webkit-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+        left: 50%;
+        top: 40%;
+        margin-left: -4.5rem;
+        margin-top: -4.5rem;
+        z-index: 3;
+        display: none;
+    }
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .overlay {
+        position: absolute;
+        top: 4rem;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+    }
+    .topBar {
+        position: absolute;
+        top: 1rem;
+        height: 10rem;
+        background-color: white;
+        border-bottom: 0.1rem solid #D3D7DC;
+        left: 2rem;
+        right: 2rem;
+        .detailsPopup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 3rem;
+            line-height: 3rem;
+            font-size: 1.4rem;
+            text-align: center;
+            font-weight: 400;
+            border: 0.1rem solid #D3D7DC;
+            background-color: white;
+            transform: translateX(-50%);
+            padding: 0.5rem;
+            display: none;
+        }
+        .logo {
+            position: relative;
+            float: left;
+            height: 5rem;
+        }
+        .searchContainer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .searchField {
+            position: relative;
+            float: left;
+            margin: 1rem;
+            height: 3rem;
+            width: 15rem;
+            line-height: 3rem;
+            color: black;
+            padding-bottom: 0.1rem;
+            padding-left: 1rem;
+            font-size: 1.2rem;
+            border-radius: 0.2rem;
+            overflow: none;
+            background: transparent;
+            border: 0.1rem solid #D3D7DC;
+            resize: none;
+            outline: none;
+        }
+        .optionsContainer {
+            position: relative;
+            float: right;
+            width: 15rem;
+            margin-right: 5rem;
+            .add {
+                position: relative;
+                height: 5rem;
+                width: 5rem;
+                float: left;
+                .text {
+                    position: absolute;
+                    height: 3rem;
+                    line-height: 3.5rem;
+                    bottom: 0;
+                    text-align: center;
+                    width: 100%;
+                }
+                .addRestaurant {
+                    position: absolute;
+                    top: 0.5rem;
+                    height: 4rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+            .refreshData {
+                position: relative;
+                height: 5rem;
+                width: 5rem;
+                float: left;
+                .text {
+                    position: absolute;
+                    height: 3rem;
+                    line-height: 3.5rem;
+                    bottom: 0;
+                    text-align: center;
+                    width: 100%;
+                }
+                .refreshRestaurant {
+                    position: absolute;
+                    top: 0.5rem;
+                    height: 4rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+            .compare {
+                position: relative;
+                height: 5rem;
+                width: 5rem;
+                float: left;
+                display: none;
+                .text {
+                    position: absolute;
+                    height: 3rem;
+                    line-height: 3.5rem;
+                    bottom: 0;
+                    text-align: center;
+                    width: 100%;
+                }
+                .compareRestaurant {
+                    position: absolute;
+                    top: 1rem;
+                    height: 2.5rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+    }
+    .addButton {
+        position: relative;
+        float: left;
+        margin: 1rem;
+        margin-right: 2rem;
+        background-color: black;
+        height: 3rem;
+        line-height: 3rem;
+        color: white;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-size: 1.2rem;
+        border-radius: 0.2rem;
+    }
+    .legend {
+        .addButton();
+        float: right;
+        margin-left: 0;
+        margin-right: 2rem;
+        background-color: transparent;
+        .color {
+            position: relative;
+            float: left;
+            height: 2rem;
+            padding-right: 0.2rem;
+            background-color: pink;
+            width: 2rem;
+            margin-right: 0.5rem;
+        }
+        .text {
+            position: relative;
+            float: right;
+            color: black;
+            margin-right: 0rem;
+        }
+    }
+}
+
+.pageContainer {
+    position: absolute;
+    top: 12rem;
+    bottom: 0;
+    width: 100%;
+    overflow-y: scroll;
+    .menuTopContainer {
+        position: fixed;
+        left: 2rem;
+        height: 4rem;
+        line-height: 4rem;
+        right: 2rem;
+        z-index: 3;
+        background-color: #E9EBEE;
+    }
+    .menuContainer {
+        position: absolute;
+        width: 16rem;
+        background-color: #E9EBEE;
+        top: 3rem;
+        bottom: 0;
+        left: 2rem;
+        padding: 1rem;
+        .menuItem {
+            position: relative;
+            text-transform: capitalize;
+            height: auto;
+            padding-bottom: 0.4rem;
+            .heading {
+                position: relative;
+                height: 4rem;
+                line-height: 4rem;
+                padding-left: 1rem;
+                font-size: 1.6rem;
+                font-weight: 400;
+                border-bottom: 0.1rem solid;
+                .socialMediaIcon {
+                    position: relative;
+                    float: left;
+                    height: 2rem;
+                    padding-top: 1rem;
+                    padding-right: 0.3rem;
+                }
+            }
+            .option {
+                position: relative;
+                height: 3rem;
+                line-height: 3rem;
+                padding-left: 1rem;
+                font-size: 1.4rem;
+                font-weight: 300;
+            }
+        }
+    }
+    .card {
+        position: absolute;
+        height: 100%;
+        left: 20rem;
+        right: 2rem;
+        overflow-x: hidden;
+        white-space: nowrap;
+        .columnContainer {
+            position: relative;
+            display: inline-block;
+            height: 100%;
+            width: 26rem;
+            border-right: 0.1rem solid #D3D7DC;
+            .pageTopContainer {
+                position: absolute;
+                height: 4rem;
+                line-height: 4rem;
+                width: inherit;
+                border-bottom: 0.1rem solid #D3D7DC;
+                z-index: 3;
+                background-color: #E9EBEE;
+                .page {
+                    position: relative;
+                    float: left;
+                    padding-left: 1rem;
+                    .pagePicture {
+                        position: relative;
+                        padding-top: 0.5rem;
+                        height: 3rem;
+                        float: left;
+                    }
+                    .pageName {
+                        position: relative;
+                        float: left;
+                        font-size: 1.4rem;
+                        padding-left: 1rem;
+                        padding-right: 1rem;
+                        font-weight: 400;
+                    }
+                }
+            }
+            .contentContainer {
+                position: absolute;
+                top: 4rem;
+                bottom: 0;
+                width: inherit;
+                .contentRow {
+                    position: relative;
+                    float: left;
+                    height: 3rem;
+                    line-height: 3rem;
+                    width: 100%;
+                    border-bottom: 0.1rem solid #D3D7DC;
+                    background-color: white;
+                    .content {
+                        position: relative;
+                        font-size: 1.4rem;
+                        padding-left: 1rem;
+                        text-align: left;
+                        .more {
+                            position: relative;
+                            float: right;
+                            padding-left: 1rem;
+                            height: 4rem;
+                            padding-top: 0.5rem;
+                        }
+                    }
+                    .contentEvent {
+                        .content();
+                        .option {
+                            position: relative;
+                            float: left;
+                        }
+                        .text {
+                            position: relative;
+                            float: left;
+                            font-size: 1.4rem;
+                            font-weight: 400;
+                        }
+                        .statsContainer {
+                            position: absolute;
+                            top: 2rem;
+                            height: 7rem;
+                            .stat {
+                                position: relative;
+                                padding-left: 0.2rem;
+                                font-size: 1.2rem;
+                                font-weight: 300;
+                                padding-left: 1rem;
+                                height: 2rem;
+                                .text {
+                                    position: relative;
+                                    font-size: 1.2rem;
+                                    font-weight: 300;
+                                    padding-left: 1rem;
+                                    height: 2rem;
+                                    line-height: 2rem;
+                                    float: left;
+                                }
+                                .statImage {
+                                    position: relative;
+                                    height: 2rem;
+                                    float: left;
+                                    padding-left: 0.5rem;
+                                }
+                            }
+                        }
+                        .more {
+                            position: relative;
+                            float: right;
+                            padding-left: 1rem;
+                            height: 3rem;
+                            padding-top: 0.5rem;
+                        }
+                    }
+                }
+                .blank {
+                    height: 4rem;
+                }
+            }
+            .fixed {
+                position: fixed;
+                z-index: 3;
+                background-color: white;
+                width: inherit;
+                height: inherit;
+            }
+        }
+    }
+}
+
+.eventPopup {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: none;
+    .eventContainer {
+        position: absolute;
+        height: 32rem;
+        background-color: #fff;
+        left: 15rem;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        overflow-y: scroll;
+        .dateContainer {
+            position: absolute;
+            width: 5rem;
+            text-align: center;
+            top: 0;
+            bottom: 0;
+            .date {
+                position: relative;
+                float: left;
+                height: 14rem;
+                width: 100%;
+                text-align: center;
+                padding-top: 2rem;
+                border-right: 0.1rem solid #D3D7DC;
+                .month {
+                    position: relative;
+                    height: 4rem;
+                    line-height: 4rem;
+                    font-size: 1.4rem;
+                    color: #fa3e3e;
+                }
+                .day {
+                    position: relative;
+                    height: 2rem;
+                    line-height: 2rem;
+                    font-size: 2.4rem;
+                    color: black;
+                    font-weight: 300;
+                }
+            }
+        }
+        .dataContainer {
+            position: absolute;
+            left: 5rem;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            white-space: nowrap;
+            .row {
+                position: relative;
+                height: 14rem;
+                width: 100%;
+                padding: 1rem;
+                font-size: 1.4rem;
+                border-bottom: 0.1rem dotted #D3D7DC;
+                .dataColumn {
+                    position: relative;
+                    display: inline-block;
+                    height: 100%;
+                    width: 26rem;
+                    border-right: 0.1rem solid #D3D7DC;
+                    white-space: normal;
+                    .dataRow {
+                        position: relative;
+                        height: 14rem;
+                        font-size: 1.4rem;
+                        .name {
+                            position: relative;
+                            text-align: center;
+                            height: 4rem;
+                            line-height: 2rem;
+                            font-size: 1.8rem;
+                            font-weight: 400;
+                            overflow: hidden;
+                        }
+                        .time {
+                            position: relative;
+                            text-align: left;
+                            height: 3rem;
+                            line-height: 3rem;
+                            font-size: 1.4rem;
+                            font-weight: 400;
+                            overflow: hidden;
+                        }
+                        .description {
+                            position: relative;
+                            height: 4rem;
+                            line-height: 2rem;
+                            font-size: 1.4rem;
+                            overflow: hidden;
+                        }
+                        .stat {
+                            position: relative;
+                            float: left;
+                            height: 4rem;
+                            line-height: 2rem;
+                            font-size: 1.4rem;
+                            padding-top: 0.5rem;
+                            padding-right: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.reviewPopup{
+   position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
+    .reviewContainer {
+        position: absolute;
+        height: 32rem;
+        background-color: #fff;
+        left: 15rem;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        overflow-y: scroll;
+    
+            .row {
+                position: relative;
+                height: 14rem;
+                width: 100%;
+                padding: 1rem;
+                font-size: 1.4rem;
+                border-bottom: 0.1rem dotted #D3D7DC;
+                .dataColumn {
+                    position: relative;
+                    display: inline-block;
+                    height: 100%;
+                    width: 26rem;
+                    border-right: 0.1rem solid #D3D7DC;
+                    white-space: normal;
+                    .dataRow {
+                        position: relative;
+                        height: 14rem;
+                        font-size: 1.4rem;
+                        .name {
+                            position: relative;
+                            text-align: center;
+                            height: 4rem;
+                            line-height: 2rem;
+                            font-size: 1.8rem;
+                            font-weight: 400;
+                            overflow: hidden;
+                        }
+                        .time {
+                            position: relative;
+                            text-align: left;
+                            height: 3rem;
+                            line-height: 3rem;
+                            font-size: 1.4rem;
+                            font-weight: 400;
+                            overflow: hidden;
+                        }
+                        .description {
+                            position: relative;
+                            height: 4rem;
+                            line-height: 2rem;
+                            font-size: 1.4rem;
+                            overflow: hidden;
+                        }
+                        .stat {
+                            position: relative;
+                            float: left;
+                            height: 4rem;
+                            line-height: 2rem;
+                            font-size: 1.4rem;
+                            padding-top: 0.5rem;
+                            padding-right: 0.5rem;
+                        }
+                    }
+                }
+            }
+    }
+}
+// .reviewPopup{
+//     position: absolute;
+
+//     .reviewContainer {
+//             position: fixed;
+//             width: 64rem;
+//             height: 48rem;
+//             overflow-y: auto;
+//             top: 50%;
+//             left: 50%;
+//             transform: translate(-50%, -50%);
+//             border: 1px solid;
+//             .customerReview {
+//                 position: relative;
+//                 width: 100%;
+//                 height: 16rem;
+//                 clear: both;
+//                 border-bottom: 1px solid lightgray;
+//                 box-sizing: border-box;
+//                 background: white;
+//                 .customerName {
+//                     position: relative;
+//                     height: 3.5rem;
+//                     line-height: 3.5rem;
+//                     padding-left: 3rem;
+//                     font-size: 1.5rem;
+//                     font-weight: 700;
+//                     text-decoration: underline;
+//                 }
+//                 .customerImage {
+//                     position: absolute;
+//                     height: 7rem;
+//                     width: 7rem;
+//                     top: 50%;
+//                     left: 3rem;
+//                     border-radius: 50%;
+//                     box-sizing: border-box;
+//                     transform: translateY(-50%);
+//                 }
+//                 .rating {
+//                     position: absolute;
+//                     left: 12rem;
+//                     top: 4rem;
+//                     font-size: 1.5rem;
+//                     font-weight: 600;
+//                 }
+//                 .reviewText {
+//                     position: absolute;
+//                     height: auto;
+//                     font-size: 1.5rem;
+//                     letter-spacing: 1px;
+//                     top: 7rem;
+//                     float: left;
+//                     box-sizing: border-box;
+//                     line-height: 2.1rem;
+//                     left: 12rem;
+//                     right: 1rem;
+//                     text-align: justify;
+//                 }
+//             }
+//         }
+// }
