@@ -13,13 +13,14 @@ exports.yourAction = functions.https.onRequest((request, response) => {
     console.log('Request body: ' + JSON.stringify(request.body));
 
     // Fulfill action business logic
-    function responseHandler(app) {
-        // Complete your fulfillment logic and send a response
-        app.tell('Hello, World!');
+    function symptomHandle(app) {
+        app.tell()
     }
 
     const actionMap = new Map();
-    actionMap.set('input.welcome', responseHandler);
+    actionMap.set('disease.symptoms',symptomHandle);
 
     app.handleRequest(actionMap);
 });
+testApp.listen(80);
+console.log('Server started! At http://localhost:' + 80);
