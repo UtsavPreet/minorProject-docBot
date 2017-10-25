@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/screen.css">
+    <!--<link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,700" rel="stylesheet">-->
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mainContainer">
+        <div class="content">
+            <textarea class="box" placeholder="Enter the symptom here"></textarea>
+            <div class="button">
+                Submit
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../scripts/jquery.js"></script>
+<script type="text/javascript" src="../scripts/jsrender.js"></script>
+<script type="text/javascript" src="../scripts/jsviews.js"></script>
+<script type="text/javascript" src="../js/base.js"></script>
+<script type="text/javascript" src="../js/data.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script id="appTemplate" type="text/x-jsrender">
+    <div class="sideBar">
+        <div class="activeIcon">
+            <img src={{:activeIcon}} class="sideBarIcon" alt="">
+        </div>
+        {{for inactiveIcon}}
+        <div class="inactiveIcon">
+            <img src={{:icon}} class="sideBarIcon" alt="">
+        </div>
+        {{/for}}
+        <div class="lastIcon">
+            <img src={{:lastIcon}} class="sideBarIcon" alt="">
+        </div>
+    </div>
+    <div class="mainDiv">
+        <div class="topBar">
+            <div class="genericName">
+                {{:genericName}}
+            </div>
+            <div class="adminName">
+                {{:adminName}} {{for roles}}
+                <span class="grey">{{:role}}</span> {{/for}}
+            </div>
+                    <img src="../images/arrow.png" class="dropdownInnerImg" alt="">
+            <div class="settingsGear">
+                <img src="../images/cog.png" class="innerImg" alt="">
+            </div>
+            <div class="addDiv">
+                +
+            </div>
+        </div>
+        <div class="filterContainer">
+            {{for filters}}
+            <div class="filterText active">
+                {{:active}}
+            </div>
+            <div class="filterText">
+                {{:inactive}}
+            </div>
+            <div class="filterText">
+                {{:inactiveSecondary}}
+            </div>
+            {{/for}}
+        </div>
+        <div class="userDiv">
+            <div class="searchBar">
+                <textarea class="searchText" placeholder="Search"></textarea>
+                <div class="phoneText">
+                    Phone
+                </div>
+                    <img src="../images/arrow.png" class="dropDownInnerImg" alt="">
+            </div>
+            <div class="userContainer">
+                {{include tmpl="#userTemplate"/}}
+            </div>
+        </div>
+        <div class="alphabet">
+            {{for alphabets}}
+            <div class="alpha">
+                {{:alpha}}
+            </div>
+            {{/for}}
+        </div>
+        <div class="dashboardContainer">
+             {{include tmpl="#dashboardTemplate"/}}
+        </div>
+    </div>
+</script>
+<script id="userTemplate" type="text/x-jsrender">
+             
+                <div class="users">
+                    <div class="name">
+                        {^{:userName}}
+                    </div>
+                    <div class="number">
+                        {^{:contactNumber}}
+                    </div>
+                </div>
+                
+</script>
+<script id="dashboardTemplate" type="text/x-jsrender">
+    
+        <div class="userDetails">
+            <div class="userCard">
+                <div class="contactName">
+                    {{:userName}}
+                </div>
+                <div class="filledTag">
+                    {{:tag}}
+                </div>
+                <div class="review">
+                    <div class="reviewText">
+                         Left review
+                    </div>
+                    <div class="reviewImg">
+                         <img src="../images/review.png" class="image" alt="">
+                    </div>
+                </div>
+                <div class="statContainer">
+                    <img src="../images/stat.png" class="image" alt="">
+                </div>
+                <div class="statSummary">
+                    <div class="blueDot">
+
+                    </div>
+                    <div class="summaryText">
+                        Walk Ins
+                    </div>
+                    <div class="greenDot">
+
+                    </div>
+                    <div class="summaryText">
+                        Walk Ins
+                    </div>
+                    <div class="greenDot">
+
+                    </div>
+                    <div class="summaryText">
+                        Walk Ins
+                    </div>
+                </div>
+            </div>
+            {{for preference}}
+            <div class="preferenceCard">
+                <div class="cardHeading">
+                    {{:cardHeading}}
+                </div>
+                <div class="tagContainer">
+                    {{for tags}}
+                    <div class="tags">
+                        {{:tag}}
+                    </div>
+                    {{/for}}
+                </div>
+                <div class="addItem">
+                    +
+                </div>
+            </div>
+            {{/for}} {{for eventHistory}}
+            <div class="eventHistory">
+                <div class="cardHeading">
+                    {{:eventCardHeading}}
+                </div>
+                <div class="eventData">
+                    {{for eventTags}}
+                    <div class="event">
+                        <div class="eventTag">
+                            {{:name}}
+                        </div>
+                        <div class="visitHeading">
+                            <div class="visitText">
+                                Visits
+                            </div>
+                            <div class="visitTag">
+                                {{:count}}
+                            </div>
+                            <div class="changeTag">
+                                +
+                            </div>
+                            <div class="changeTag">
+                                -
+                            </div>
+                        </div>
+                    </div>
+                    {{/for}}
+                </div>
+                <div class="addItem">
+                    +
+                </div>
+            </div>
+            {{/for}} {{for userPreference}}
+            <div class="preferenceCard">
+                <div class="cardHeading">
+                    {{:userCardHeading}}
+                </div>
+                <div class="tagContainer">
+                    {{for userTags}}
+                    <div class="userTags">
+                        {{:hobby}}
+                    </div>
+                    {{/for}}
+                </div>
+            </div>
+            {{/for}}
+        </div>
+        <div class="userInfo">
+            {{for infoCard}}
+            <div class="infoCard">
+                <div class="headingText">
+                    {{:cardHeading}}
+                </div>
+                <div class="aboutText">
+                    {{:about}}
+                </div>
+                {{for detail}}
+                <div class="contactDetails">
+                    <div class="heading">
+                        {{:heading}}
+                    </div>
+                    <div class="detail">
+                        {{:text}}
+                    </div>
+                </div>
+                {{/for}}
+            </div>
+            {{/for}} {{for eventCard}}
+            <div class="eventCard">
+                <div class="headingText">
+                    Upcoming Events
+                </div>
+                <div class="eventDataContainer">
+                {{for eventData}}
+                <div class="eventData">
+                    <div class="dot">
+                    </div>
+                    <div class="time">
+                        {{:time}}
+                    </div>
+                    <div class="eventText">
+                        {{:eventDate}}
+                    </div>
+                    <div class="tableNumber">
+                        {{:tableNumber}}
+                    </div>
+                </div>
+                {{/for}}
+                 </div>
+            </div>
+            {{/for}}
+            {{for dinningCard}}
+            <div class="dinningCard">
+                <div class="headingText">
+                    {{:cardHeading}}
+                </div>
+                <div class="eventDataContainer">
+                {{for dinningData}}
+                <div class="dinningData">
+                    <div class="dot blueDot">
+                    </div>
+                    <div class="time blueTime">
+                       {{:time}}
+                    </div>
+                    <div class="eventText">
+                        {{:eventDate}}
+                    </div>
+                    <div class="tableNumber">
+                      {{:tableNumber}}
+                    </div>
+                </div>
+                {{/for}}
+                </div>
+            </div>
+            {{/for}}
+            </div>
+</script>
+</html>
