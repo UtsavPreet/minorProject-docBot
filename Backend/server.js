@@ -19,13 +19,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/views/index.html');
 });
-mongo.connect(url, function (err, db) {
-    if (err) {
-        console.log(err);
-    }
-    console.log("connected");
-    global.db = db;
-});
+// mongo.connect(url, function (err, db) {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log("connected");
+//     global.db = db;
+// });
 app.post('/health', function(req,resp){
     console.log(req.body.data);
     var symptom = req.body.data;
@@ -44,59 +44,15 @@ function healthline(url, resp) {
 
     })
 };
-
-function health($, url, cb) {
-    var restaurant = {};
-    restaurant.url = url;
-    restaurant.featuresArray = [];
-    restaurant.offerArray = [];
-    restaurant.similarRestaurant = [];
-    restaurant.name = $('.restnt-infoBox .restnt-name').text();
-    restaurant.rating = $('.restnt-infoBox .restnt-rating .rating').text();
-    restaurant.totalVotes = $('.restnt-infoBox .restnt-rating .total-reviews').text();
-    restaurant.totalVotes = restaurant.totalVotes.replace('(', '').replace(')', '');
-    // reviewCount.replace('(','').replace(')','')
-    if ($('.sidebar-right').find('.text-center')[0] !== undefined)
-        restaurant.bookingNumber = $('.sidebar-right').find('.text-center')[0].children[1].data;
-    // restaurant.bookingNumber = restaurant.bookingNumber.replace('Booked', '').trim();
-
-    var offers = $('#offers').find('h3 span').text();
-    restaurant.totalOffer = offers.slice(1, 2);
-    var events = $('#events').find('h3 span').text();
-    restaurant.totalEvent = events.slice(1, 2);
-    restaurant.totalReview = $('.pull-left .total-reviews').last().text();
-    restaurant.totalReview = restaurant.totalReview.replace('(', '').replace(')', '');
-    $('.offers-available').each(function (index, element) {
-        var offer = {};
-        offer.name = $(this).first('.clearfix').find('h4').text();
-        offer.date = $(this).find('.day').text();
-        offer.time = $(this).find('.time').text();
-        restaurant.offerArray.push(offer)
+function healthdata($, url, cb) {
+    var otherRestaurant=[];
+    $('.css-1rw84i9').each(function (index, element) {
+        otherRestaurant = $(this).find('.css-ciezwg').text();
+        console.log(otherRestaurant);
     })
-
-    $('.col-sm-6').each(function (index, element) {
-        var otherRestaurant;
-        otherRestaurant = $(this).find('.listing-card-wrap .titleDiv h4 a').text();
-        if (otherRestaurant)
-            restaurant.similarRestaurant.push(otherRestaurant);
-
-    })
-
-    $('.info-wrapper .other-features').find('.row').each(function (index, element) {
-        var feature = {};
-        feature.name = $(this).find('.label-txt').text();
-        feature.value = $(this).find('.rightDiv').text();
-        if (feature.name && feature.value)
-            restaurant.featuresArray.push(feature);
-    })
-
-
-    review(url + '/review?revpage=1000', restaurant, function (data) {
-        data.src = 'dineout';
-        restaurantObj.dineout = data;
-        cb(data);
-    });
+    return otherRestaurant;
 }
+
 
 app.listen(port);
 console.log('Server started! At http://localhost:' + port);
