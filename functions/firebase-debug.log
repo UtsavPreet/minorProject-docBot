@@ -1,0 +1,23 @@
+[debug] [2017-10-22T05:47:32.794Z] ----------------------------------------------------------------------
+[debug] [2017-10-22T05:47:32.794Z] Command:       E:\node.exe C:\Users\UTSAV PREET\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --only functions
+[debug] [2017-10-22T05:47:32.794Z] CLI Version:   3.13.1
+[debug] [2017-10-22T05:47:32.794Z] Platform:      win32
+[debug] [2017-10-22T05:47:32.794Z] Node Version:  v7.8.0
+[debug] [2017-10-22T05:47:32.794Z] Time:          Sun Oct 22 2017 11:17:32 GMT+0530 (India Standard Time)
+[debug] [2017-10-22T05:47:32.794Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-22T05:47:32.832Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-22T05:47:32.832Z] > authorizing via signed-in user
+[debug] [2017-10-22T05:47:32.832Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-22T05:47:32.832Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/MgVO6zz0pgfsuHTVaAC_LpNjuf5h8cChXSctwCyLk8jcLX53cJQnIAcbz-Lv27Jp',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sun Oct 22 2017 11:17:32 GMT+0530 (India Standard Time)
+[debug] [2017-10-22T05:47:32.994Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T05:47:32.994Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/docbot-6305d  
+ Sun Oct 22 2017 11:17:32 GMT+0530 (India Standard Time)
+[debug] [2017-10-22T05:47:34.341Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T05:47:34.341Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/docbot-6305d/tokens  
+ Sun Oct 22 2017 11:17:34 GMT+0530 (India Standard Time)

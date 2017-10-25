@@ -14,7 +14,8 @@ exports.yourAction = functions.https.onRequest((request, response) => {
 
     // Fulfill action business logic
     function symptomHandle(app) {
-        app.tell()
+        var a = app.request.body;
+        app.tell('The body is'+a);
     }
 
     const actionMap = new Map();
@@ -22,5 +23,3 @@ exports.yourAction = functions.https.onRequest((request, response) => {
 
     app.handleRequest(actionMap);
 });
-testApp.listen(80);
-console.log('Server started! At http://localhost:' + 80);
