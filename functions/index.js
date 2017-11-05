@@ -19,9 +19,9 @@ exports.yourAction = functions.https.onRequest((request, response) => {
     let symptoms = params.Symptom;
     let newUrl = apiUrl + symptoms;
     console.log(newUrl);
-    let dummyArray = ['Disease 1','Disease 2','Disease3'];
+    let dummyArray = ['Common Cold','Cold & Flu','Strep Throat','Food Poisoning'];
     let dummyString = dummyArray.toString();
-    dummyString.replace(',','\n');
+    dummyString.replace(/,/g, '\n');
     healthCard(newUrl,dummyString);
   }
   function healthCard (url,info) {
@@ -30,10 +30,10 @@ exports.yourAction = functions.https.onRequest((request, response) => {
       .addBasicCard(app.buildBasicCard(info)
         .setTitle('Possible Diseases')
         .addButton('Read more', url)
-        .setImage('https://example.google.com/42.png', 'Image alternate text')
+        .setImage('https://i.pinimg.com/736x/71/eb/8f/71eb8f93b48cd7b271b626091095be57--font-design-brand-design.jpg', 'Image alternate text')
       )
-      .addSimpleResponse('Do you want to see a doctor ?')
-      .addSuggestions(['Yes', 'No', 'Yes I want to', 'No I dont want to'])
+      .addSimpleResponse('Anything else I can help you with ?')
+      .addSuggestions(['Find a near by doctor', 'Tell me more about a medicine',])
     );
   }
 
@@ -41,6 +41,12 @@ exports.yourAction = functions.https.onRequest((request, response) => {
     let location = request.body.result.parameters.geo-city;
     console.log(location);
     app.tell("Test Response"+location);
+  }
+
+  function medicineDetails(app){
+    let medicineName = request.body.result.parameters.medicine;
+    console.log(medicineName);
+    app.tell("Medicine Response"+medicineName);
   }
   // function healthline(url, resp) {
   //   requestGenerate(url, function (err, res, html) {
@@ -78,5 +84,8 @@ exports.yourAction = functions.https.onRequest((request, response) => {
   const actionMap = new Map();
   actionMap.set('disease.symptoms', symptomHandle);
   actionMap.set('doctor.find',doctorFinder);
+  actionMap.set('medicine.detail',medicineDetails);
   app.handleRequest(actionMap);
 });
+
+
