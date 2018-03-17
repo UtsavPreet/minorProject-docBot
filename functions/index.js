@@ -6,7 +6,7 @@ const {
 const functions = require('firebase-functions');
 const cheerio = require('cheerio');
 const requestGenerate = require('request');
-const apiUrl = 'https://www.healthline.com/symptom/';
+const apiUrl = 'https://www.healthline.com/symptom';
 exports.yourAction = functions.https.onRequest((request, response) => {
   const app = new DialogflowApp({
     request,
@@ -18,15 +18,14 @@ exports.yourAction = functions.https.onRequest((request, response) => {
   function symptomHandle(app) {
     let params = request.body.result.parameters;
     let symptoms = params.Symptom;
+    let newUrl = apiUrl;
     for (symptom of symptoms) {
-
+      newUrl = newUrl + '/' + symptom
     }
-    let newUrl = apiUrl + symptoms;
+    
     console.log(newUrl);
-    let dummyArray = ['Common Cold', 'Cold & Flu', 'Strep Throat', 'Food Poisoning'];
-    let dummyString = dummyArray.toString();
-    dummyString.replace(/,/g, '\n');
-    healthCard(newUrl, dummyString);
+    let infoString = "You are" +params.Age.amount+"years old. And suffering from"+symptoms;
+    healthCard(newUrl, infoString);
   }
 
   function healthCard(url, info) {
@@ -61,6 +60,7 @@ exports.yourAction = functions.https.onRequest((request, response) => {
   }
 
   function medicineDetails(app) {
+    // todo: Integrate the Medicine API from Practo/1mg
     let medicineName = request.body.result.parameters.medicineName;
     if (medicineName == 'Crocin') {
       app.ask(app.buildRichResponse()
@@ -73,43 +73,10 @@ exports.yourAction = functions.https.onRequest((request, response) => {
         .addSuggestionLink('Buy the Medicine', 'https://www.1mg.com/otc/crocin-advance-tablet-otc117239')
       )
     } else {
-      app.tell(medicineName + "There is no information currently but we are improving our database to include as many medicines as possible.");
+      app.tell("There is no information currently about" + medicineName + "but we are improving our database to include as many medicines as possible.");
     }
 
   }
-  // function healthline(url, resp) {
-  //   requestGenerate(url, function (err, res, html) {
-  //     if (!err && res.statusCode == 200) {
-  //       $ = cheerio.load(html);
-  //       healthdata($, url, function (data) {
-  //         console.log(data);
-  //         app.askWithList('Alright! Here are a few possible diseases. Which one would you like to know more about ?',
-  //           app.buildList('Possible Diseases'))
-  //         // Add the first item to the list
-  //         for (disease of data) {
-  //           app.addItems(app.buildOptionItem('MATH_AND_PRIME', ['math', 'math and prime', 'prime numbers', 'prime'])
-  //             .setTitle('disease'))
-  //         }
-  //       });
-  //     }
-
-  //   })
-  // };
-
-  // function healthdata($, url, cb) {
-  //   let diseases = [];
-  //   $('.css-1rw84i9').each(function (index, element) {
-  //     diseases = $(this).find('.css-ciezwg').text();
-  //   })
-  //   cb(diseases);
-  // }
-
-
-
-
-
-
-
   const actionMap = new Map();
   actionMap.set('disease.symptoms', symptomHandle);
   actionMap.set('doctor.find', doctorFinder);
