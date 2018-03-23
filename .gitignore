@@ -68,6 +68,7 @@ typings/
 *.launch
 .settings/
 *.sublime-workspace
+/.vscode
 
 # IDE - VSCode
 .vscode/*
