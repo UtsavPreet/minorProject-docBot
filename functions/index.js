@@ -7,7 +7,7 @@ const functions = require('firebase-functions');
 const cheerio = require('cheerio');
 const requestGenerate = require('request');
 const apiUrl = 'https://www.healthline.com/symptom';
-exports.yourAction = functions.https.onRequest((request, response) => {
+exports.docBotAction = functions.https.onRequest((request, response) => {
   const app = new DialogflowApp({
     request,
     response
