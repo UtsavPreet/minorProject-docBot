@@ -20,7 +20,7 @@ exports.docBotAction = functions.https.onRequest((request, response) => {
     let symptoms = params.Symptom;
     let newUrl = apiUrl;
     for (symptom of symptoms) {
-      newUrl = newUrl + '/' + symptom
+      newUrl = newUrl + '/' + symptom 
     }
     
     console.log(newUrl);
@@ -75,7 +75,6 @@ exports.docBotAction = functions.https.onRequest((request, response) => {
     } else {
       app.tell("There is no information currently about" + medicineName + "but we are improving our database to include as many medicines as possible.");
     }
-
   }
   const actionMap = new Map();
   actionMap.set('disease.symptoms', symptomHandle);
